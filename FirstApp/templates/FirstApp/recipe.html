@@ -1,0 +1,9 @@
+{% if recipe_list %}
+    <ul>
+    {% for recipe in recipe_list %}
+        <li>{{recipe.name }} || {{ recipe.content }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
