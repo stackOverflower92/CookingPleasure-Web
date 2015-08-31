@@ -32,7 +32,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/carousel.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
 
     {% load staticfiles %}
         <link rel="stylesheet" href="{% static "Bootstrap/css/bootstrap.min.css" %}" />
@@ -142,6 +142,7 @@
             <p style="text-align: center;">
                 The form below is here for you!
             </p>
+            <hr class="featurette-divider">
             <form class="form-horizontal" role="form" method="post" action="index.php">
     <div class="form-group">
         <label for="name" class="col-sm-2 control-label">Name</label>
@@ -179,48 +180,25 @@
     </div>
 </form>
         </div>
+        <div class="jumbotron">
+            <h2 style="text-align: center;">And don't forget to follow us on social networks</h2>
+            <p style="text-align: center;">to be always updated and keep in touch with our community!</p>
+            <hr class="featurette-divider">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <h2 style="font-size: 120px;" class="fa fa-facebook"></h2>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                     <h2 style="font-size: 120px;" class="fa fa-twitter"></h2>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                     <h2 style="font-size: 120px;" class="fa fa-google-plus"></h2>
+                </div>
+            </div>
+        </div>
 
       <!-- FOOTER -->
-      <footer>
-          <section class="feature-list small">
-                <div class="row">
-                    <div>
-                        <section>
-                            <h3 class="icon fa-twitter">Twitter</h3>
-                            <p>
-                                <a href="#">Follow @CookingPleasure</a>
-                            </p>
-                        </section>
-                    </div>
-                    <div>
-                        <section>
-                            <h3 class="icon fa-facebook">Facebook</h3>
-                            <p>
-                                <a href="#">Cooking Pleasure on Facebook</a>
-                            </p>
-                        </section>
-                    </div>
-                </div>
-                <div class="row">
-                    <div>
-                        <section>
-                            <h3 class="icon fa-google-plus">Google+</h3>
-                            <p>
-                                <a href="#">+CookingPleasure</a>
-                            </p>
-                        </section>
-                    </div>
-                    <div>
-                        <section>
-                            <h3 class="icon fa-envelope">Email</h3>
-                            <p>
-                                <a href="mailto:info@cookingpleasure.com">info@cookingpleasure.com</a>
-                            </p>
-                        </section>
-                    </div>
-                </div>
-									</section>
-          <p class="pull-right"><a href="#">Back to top</a></p>
+      </footer>
         <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
       </footer>
     </div><!-- /.container -->
