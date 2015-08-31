@@ -5,6 +5,7 @@ from django.template import RequestContext, loader
 from django.http import HttpResponse
 
 def index(request):
+    recipe_list = Recipe.objects.order_by('-pub_date')
     template = loader.get_template('FirstApp/index.html')
     context = RequestContext(request, {
         'recipe_list': recipe_list,
