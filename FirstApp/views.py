@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 def index(request):
     recipe_list = Recipe.objects.order_by('-pub_date')
-    template = loader.get_template('FirstApp/index.html')
+    template = loader.get_template('FirstApp/Bootstrap/index.html')
     context = RequestContext(request, {
         'recipe_list': recipe_list,
     })
@@ -14,7 +14,7 @@ def index(request):
 
 def login(request):
     Users = User.objects
-    template = loader.get_template('FirstApp/login.html')
+    template = loader.get_template('FirstApp/Bootstrap/login.html')
     context = RequestContext(request, {
         'users': Users,
     })
