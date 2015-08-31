@@ -7,6 +7,10 @@ body {
   color: #5a5a5a;
 }
 
+.carousel-caption > h1 {
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+    font-size: 80px;
+}
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
@@ -90,6 +94,13 @@ body {
 
 .navbar {
     background-color: #FF5722;
+    border-bottom-color: #E64A19;
+    border-right-color: #E64A19;
+}
+
+#active {
+    color: transparent;
+    border-bottom-color: whitesmoke;
 }
 
 ul.nav.navbar-nav > li > a {
@@ -106,7 +117,12 @@ a.navbar-brand {
         margin-bottom: 35%;
         font-size: 21px;
         line-height: 1.4;
-  }
+    }
+
+    .carousel-caption > h1 {
+        font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+        font-size: 40px;
+    }
 }
 
 @media (min-width: 768px) {
