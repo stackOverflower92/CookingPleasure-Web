@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 def index(request):
     recipe_list = Recipe.objects.order_by('-pub_date')
-    template = loader.get_template('FirstApp/Bootstrap/index.html')
+    template = loader.get_template('FirstApp/index.html')
     context = RequestContext(request, {
         'recipe_list': recipe_list,
     })
@@ -14,7 +14,7 @@ def index(request):
 
 def login(request):
     Users = User.objects
-    template = loader.get_template('FirstApp/Bootstrap/login.html')
+    template = loader.get_template('FirstApp/login.html')
     context = RequestContext(request, {
         'users': Users,
     })
@@ -22,15 +22,13 @@ def login(request):
 
 #TODO:creare i template e le pagine html e aggiustare i return
 def ShowRecipes(request):
-    recipe_list = Recipe.objects.order_by('-Recipe_id')
+    recipe_list = Recipe.objects
     context = {'recipe_list': recipe_list}
     return render(request, 'FirstApp/recipe.html', context)
 
-def ShowMenu(request, Menu_id):
-    try:
-        menu = Menu.objects.get(pk=Menu_id)
-    except Menu.DoesNotExist:
-        raise Http404("Menu does not exist")
-    return render(request, 'FirstApp/showMenu.html', {'menu': menu})
+def ShowMenu(request):
+    menu_list = Menu.objects.order_by('-name')
+    context = {'menu_list': menu_list}
+    return render(request, 'FirstApp/dashboard.html', context)
 
 

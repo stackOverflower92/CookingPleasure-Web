@@ -1,40 +1,46 @@
-<!DOCTYPE HTML>
-<html>
-    <body>
-        <div id="header-wrapper" >
-            <div id="header" class="container" >
-                <div class="6u 12u(mobile)">
-                    <section>
-                        <div id="logo">
-                            <h1 >COOKING PLEASURE</h1>
-                            <p>Just what you need for cooking</p>
-                        </div>
-                    </section>
-                </div>
-            </div>
-        </div>
-        <div id="intro-wrapper" class="wrapper style1">
-            <div class="title">Who are you?</div>
-            <section id="intro" class="container login">
-                <form method="post" action="login.py">
-                    <input type="text" name="name" id="login-name" placeholder="Name" style="width: 50%; margin-left: 25%;"/>
-                    <br>
-                    <input type="password" name="password" id="login-password" placeholder="Password" style="width: 50%; margin-left: 25%;"/>
-                    <br>
-                        <div class="12u">
-                            <ul class="actions">
-                                <li><input type="submit" class="style3" value="Login"/></li>
-                            </ul>
-                        </div>
-                </form>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-            </section>
-        </div>
+    <title>Cooking Pleasure</title>
 
-        {% load staticfiles %}
-            <link rel="stylesheet" href="{% static "assets/css/ie8.css" %}" />
-            <link rel="stylesheet" href="{% static "assets/css/main.css" %}" />
-            <link rel="stylesheet" href="{% static "assets/css/font-awesome.min.css" %}" />
-            <link rel="stylesheet" href="{% static "assets/css/override.css" %}" />
-    </body>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
+
+
+    {% load staticfiles %}
+      <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
+      <link rel="stylesheet" href="{% static "css/signin.css" %}" />
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block btn-login" type="submit" >Let's Cook!</button>
+      </form>
+
+    </div> <!-- /container -->
+  </body>
 </html>

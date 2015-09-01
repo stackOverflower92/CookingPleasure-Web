@@ -1,250 +1,208 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Cooking Pleasure</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-        <meta name="theme-color" content="#ff4500"/>
-	</head>
-	<body class="homepage">
-		<div id="page-wrapper">
+<!DOCTYPE html>
+<html lang="en">
 
-			<!-- Header -->
-				<div id="header-wrapper" class="wrapper" >
-					<div id="header">
+    <!--
 
-						<!-- Logo -->
-							<div id="logo">
-								<h1>COOKING PLEASURE</h1>
-								<p>Just what you need for cooking</p>
-							</div>
+     COLOR PALETTE FOR ALL WEBSITE
 
-						<!-- Nav -->
-							<nav id="nav">
-								<ul>
-									<li class="current"><a href="#">Home</a></li>
-                                    <li class="current"><a href="#contacts">Contacts</a></li>
-									<li>
-										<a href="#">About</a>
-										<ul>
-											<li><a href="#about">What's "Cooking Pleasure"</a></li>
-											<li><a href="#apps">Mobile Apps</a></li>
-										</ul>
-									</li>
-                                    <li class="current"><a href="#"><u>Sign in</u></a></li>
-                                    <li class="current"><a href="/FirstApp/login"><u>Sign up</u></a></li>
-								</ul>
-							</nav>
-					</div>
-				</div>
+     Dark Primary Color: #E64A19
+     Primary Color: #FF5722
+     Light Primary Color: #FFCCBC
+     Text Icons: #FFFFFF
+     Accent Color: #009688
+     Primary Text: #212121
+     Secondary Text: #727272
+     Divider Color: #B6B6B6
 
-			<!-- Intro -->
-				<div id="intro-wrapper" class="wrapper style1">
-					<div class="title">Get Started!</div>
-					<section id="intro" class="container">
-						<p class="style1">So in case you were wondering what this is all about ...</p>
-						<p class="style2">
-							Cooking Pleasure is a <u>simple</u>, <u>fast</u> and <u>intuitive</u> kitchen assistant for you
-						</p>
-						</ul>-->
-					</section>
-				</div>
+    -->
 
-			<!-- Main -->
-				<div class="wrapper style2">
-					<div class="title" id="about">The Details</div>
-					<div id="main" class="container">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+      <meta name="theme-color" content="#FF5722">
+    <link rel="icon" href="../../favicon.ico">
 
-						<!-- Features -->
-							<section id="features">
-								<header class="style1">
-									<h2>Do you want a brief description of what you can do?</h2>
-									<p>So just read down here!</p>
-								</header>
-								<div class="feature-list">
-									<div class="row">
-										<div class="6u 12u(mobile)">
-											<section>
-												<h3 class="icon fa-comment">Keep in touch with other users</h3>
-												<p>All recipes can be shared through the web, you can contribute to create a great community</p>
-											</section>
-										</div>
-										<div class="6u 12u(mobile)">
-											<section>
-												<h3 class="icon fa-refresh">Sync all your recipes on your account</h3>
-												<p>You will never lose anything!</p>
-											</section>
-										</div>
-									</div>
-									<div class="row">
-										<div class="6u 12u(mobile)">
-											<section>
-												<h3 class="icon fa-picture-o">Share your pictures with your friends</h3>
-												<p>Fast, clean and funny!</p>
-											</section>
-										</div>
-										<div class="6u 12u(mobile)">
-											<section>
-												<h3 class="icon fa-cog">You can manage everything</h3>
-												<p>Everything is controlled by you. If you feel safer by working offline this app can act as a simple cookbook!</p>
-											</section>
-										</div>
-									</div>
-								</div>
-							</section>
+    <title>Cooking Pleasure</title>
 
-					</div>
-				</div>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/carousel.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
 
-			<!-- Highlights -->
-				<div class="wrapper style3">
-					<div class="title" id="apps">Mobile App</div>
-                    <header class="style1">
-                        <h2>Hey just hold on, here is the most important part!</h2>
-                        <p>Download our apps, this is the best experience we can offer!</p>
-                    </header>
-					<div id="highlights" class="container">
-						<div class="row 150%">
-							<div class="4u 12u(mobile)">
-								<section class="highlight">
-									<h1 class="icon fa-5x fa-android"></h1>
-									<ul class="actions">
-										<li><a href="#" class="button style1">Coming soon</a></li>
-									</ul>
-								</section>
-							</div>
-							<div class="4u 12u(mobile)">
-								<section class="highlight">
-									<h1 class="icon fa-5x fa-windows"></h1>
-									<ul class="actions">
-										<li><a href="#" class="button style1">Download</a></li>
-									</ul>
-								</section>
-							</div>
-							<div class="4u 12u(mobile)">
-								<section class="highlight">
-                                    <h1 class="icon fa-5x fa-apple"></h1>
-									<ul class="actions">
-										<li><a href="#" class="button style1">Coming soon</a></li>
-									</ul>
-								</section>
-							</div>
-						</div>
-					</div>
-				</div>
+    {% load staticfiles %}
+        <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" />
+        <link rel="stylesheet" href="{% static "css/carousel.css" %}" />
+        <link rel="stylesheet" href="{% static "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" %}" />
 
-			<!-- Footer -->
-				<div id="footer-wrapper" class="wrapper">
-					<div class="title" id="contacts">Contact Us</div>
-					<div id="footer" class="container">
-						<header class="style1">
-							<h2>Do you wanna keep in touch?</h2>
-							<p>
-								Use the form below to send us a private message. We'll answer as soon as possible!
-							</p>
-						</header>
-						<hr />
-						<div class="row 150%">
-							<div class="6u 12u(mobile)">
 
-								<!-- Contact Form -->
-									<section>
-										<form method="post" action="#">
-											<div class="row 50%">
-												<div class="6u 12u(mobile)">
-													<input type="text" name="name" id="contact-name" placeholder="Name" />
-												</div>
-												<div class="6u 12u(mobile)">
-													<input type="text" name="email" id="contact-email" placeholder="Email" />
-												</div>
-											</div>
-											<div class="row 50%">
-												<div class="12u">
-													<textarea name="message" id="contact-message" placeholder="Message" rows="4"></textarea>
-												</div>
-											</div>
-											<div class="row">
-												<div class="12u">
-													<ul class="actions">
-														<li><input type="submit" class="style1" value="Send" /></li>
-														<li><input type="reset" class="style2" value="Reset" /></li>
-													</ul>
-												</div>
-											</div>
-										</form>
-									</section>
 
-							</div>
-							<div class="6u 12u(mobile)">
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <div class="navbar-wrapper">
+      <div class="container">
 
-								<!-- Contact -->
-									<section class="feature-list small">
-										<div class="row">
-											<div class="6u 12u(mobile)">
-												<section>
-													<h3 class="icon fa-twitter">Twitter</h3>
-													<p>
-														<a href="#">Follow @CookingPleasure</a>
-													</p>
-												</section>
-											</div>
-											<div class="6u 12u(mobile)">
-												<section>
-													<h3 class="icon fa-facebook">Facebook</h3>
-													<p>
-														<a href="#">Cooking Pleasure on Facebook</a>
-													</p>
-												</section>
-											</div>
-										</div>
-										<div class="row">
-											<div class="6u 12u(mobile)">
-												<section>
-													<h3 class="icon fa-google-plus">Google+</h3>
-													<p>
-														<a href="#">+CookingPleasure</a>
-													</p>
-												</section>
-											</div>
-                                            <div class="6u 12u(mobile)">
-												<section>
-													<h3 class="icon fa-envelope">Email</h3>
-													<p>
-														<a href="mailto:info@cookingpleasure.com">info@cookingpleasure.com</a>
-													</p>
-												</section>
-											</div>
-										</div>
-									</section>
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#" style="color: whitesmoke;">Cooking Pleasure</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active" id="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                  <li><a href="#login">Login</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
 
-							</div>
-						</div>
-						<hr />
-					</div>
-					<div id="copyright">
-						<ul>
-							<li>&copy; {% now "Y" %}</li><li>Design: Giammarco Agazzotti & Diego Ballotta</li>
-						</ul>
-					</div>
-				</div>
 
-		</div>
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Cooking Pleasure</h1>
+              <p>Just what you need for cooking.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.carousel -->
 
-		<!-- Scripts -->
-            {% load staticfiles %}
-        			<script src="{% static "assets/js/jquery.dropotron.min.js" %}"></script>
-			        <script src="{% static "assets/js/jquery.min.js" %}"></script>
-			        <script src="{% static "assets/js/main.js" %}"></script
-			        <script src="{% static "assets/js/skel.min.js" %}"></script>
-			        <script src="{% static "assets/js/skel-viewport.min.js" %}"></script>
-			        <script src="{% static "assets/js/util.js" %}"></script>
-			<!--[if lte IE 8]><scassets/ript src="assets/js/ie/respond.min.js"></script><![endif]-->
 
-                {% load staticfiles %}
-                <link rel="stylesheet" href="{% static "assets/css/ie8.css" %}" />
-                <link rel="stylesheet" href="{% static "assets/css/main.css" %}" />
-                <link rel="stylesheet" href="{% static "assets/css/font-awesome.min.css" %}" />
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
 
-	</body>
+    <div class="container marketing">
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <h1 class="glyphicon glyphicon-refresh" style="font-size: 140px;"></h1>
+          <h2>Sync all your recipes, lists and menus through your devices</h2>
+          <p>You will never lose anything!</p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <h1 class="glyphicon glyphicon-retweet" style="font-size: 140px;"></h1>
+            <h2>Share your pictures with your friends</h2>
+          <p>Fast, clean and funny!</p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <h1 class="glyphicon glyphicon-cog" style="font-size: 140px;"></h1>
+            <h2>You can manage everything from A to Z</h2>
+          <p>Everything is controlled by you. If you feel safer by working offline this app can act as a simple cookbook!</p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+
+     <div class="jumbotron">
+         <h2 style="text-align: center;">We created this for you</h2>
+         <p style="text-align: center;">
+             And to let you really enjoy the pleasure of cooking. This is gonna be a necessary instrument for your day!<br><br>
+             ...so, make it yours!
+            <hr class="featurette-divider">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <h2 style="font-size: 120px;" class="fa fa-android"></h2>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <h2 style="font-size: 120px;" class="fa fa-windows"></h2>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <h2 style="font-size: 120px;" class="fa fa-apple"></h2>
+                </div>
+            </div>
+         </p>
+     </div>
+
+        <hr>
+
+        <div class="jumbotron">
+
+            <h2 style="text-align: center;">Got any questions?</h2>
+            <p style="text-align: center;">
+                The form below is here for you!
+            </p>
+            <hr class="featurette-divider">
+            <form class="form-horizontal" role="form" method="post" action="index.php">
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" placeholder="First & Last Name" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="message" class="col-sm-2 control-label">Message</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" rows="4" name="message"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="human" class="col-sm-2 control-label">2 + 3 = ?</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="human" name="human" placeholder="Your Answer">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            <input id="submit" name="submit" type="submit" value="Send" class="btn btn-primary">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            <! Will be used to display an alert to the user>
+        </div>
+    </div>
+</form>
+        </div>
+        <div class="jumbotron">
+            <h2 style="text-align: center;">And don't forget to follow us on social networks</h2>
+            <p style="text-align: center;">to be always updated and keep in touch with our community!</p>
+            <hr class="featurette-divider">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <h2 style="font-size: 120px;" class="fa fa-facebook"></h2>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                     <h2 style="font-size: 120px;" class="fa fa-twitter"></h2>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                     <h2 style="font-size: 120px;" class="fa fa-google-plus"></h2>
+                </div>
+            </div>
+        </div>
+
+      <!-- FOOTER -->
+      </footer>
+        <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+    </div><!-- /.container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
 </html>

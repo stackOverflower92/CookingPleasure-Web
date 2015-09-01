@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
 
     url(r'^login/$', views.login, name='login'),
+    url(r'^dashboard/$', views.ShowMenu, name='dashboard'),
     # ex: /polls/5/
     url(r'^recipe/$', views.ShowRecipes, name='ShowRecipes'),
     # ex: /polls/5/results/

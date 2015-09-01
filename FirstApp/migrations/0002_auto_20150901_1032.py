@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='List',
             fields=[
-                ('auto_increment_id', models.AutoField(serialize=False, primary_key=True)),
+                ('List_id', models.AutoField(serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
                 ('ingredients', models.ManyToManyField(to='FirstApp.Ingredient')),
             ],
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Menu',
             fields=[
-                ('auto_increment_id', models.AutoField(serialize=False, primary_key=True)),
+                ('Menu_id', models.AutoField(serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
             ],
             options={
@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Recipe',
             fields=[
-                ('auto_increment_id', models.AutoField(serialize=False, primary_key=True)),
+                ('Recipe_id', models.AutoField(serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
                 ('content', models.TextField()),
                 ('author', models.CharField(max_length=100)),
@@ -62,8 +62,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('first_name', models.CharField(max_length=50)),
                 ('last_name', models.CharField(max_length=50)),
-                ('nickname', models.CharField(max_length=100, serialize=False, primary_key=True)),
-                ('mail', models.CharField(unique=True, max_length=100)),
+                ('nickname', models.CharField(unique=True, max_length=100)),
+                ('mail', models.CharField(max_length=100, serialize=False, primary_key=True)),
                 ('password', models.CharField(max_length=50)),
             ],
             options={
