@@ -65,4 +65,20 @@ body {
     background: #E64A19;
     border-color: #E64A19;
 }
+.btn-login:focus {
+    background: #ffffff;
+    border-color: #ffffff;
+}
+.btn-account {
+    background: rgba(230, 74, 25, 0.56);
+    border-color: #E64A19;
+}
 
+.btn-account:hover {
+    background: #E64A19;
+    border-color: #E64A19;
+}
+.btn-account:focus {
+    background: #e2e3e6;
+    border-color: #e2e3e6;
+}

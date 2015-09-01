@@ -90,3 +90,4 @@ MEDIA_ROOT = 'FirstApp/templates/FirstApp'
 STATICFILES_DIRS = (
     "FirstApp/templates/FirstApp",
 )
+LOGIN_URL = '/login/'
