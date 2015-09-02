@@ -25,22 +25,40 @@
 
   <body>
 
-    <div class="container">
-
-      <form class="form-signin" action="/FirstApp/dashboard/" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
-          {% csrf_token %}
-          {{ form.as_p }}
-
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
+    <div class="container center" >
+        <div style="vertical-align: middle;display:inline-block">
+            <form class="form-signin" action="/FirstApp/dashboard/" method="post" style="float: left">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                {% csrf_token %}
+                {% for field in form %}
+                    <label class="sr-only " for="{{ field.name }}">{{ field.label  }}</label>
+                    {{ field }}
+                {% endfor %}
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-login" type="submit" >Let's Cook!</button>
+            </form>
         </div>
-        <button class="btn btn-lg btn-primary btn-block btn-login" type="submit" >Let's Cook!</button>
-        <button class="btn btn-lg btn-primary btn-block btn-account" type="button" >Sign-Up</button>
-      </form>
+        <div style="vertical-align: middle;display:inline-block">
+            <div class="form-signin" style="float: inherit">
+                <h2 class="form-signin-heading"> - OR -</h2>
+            </div>
+        </div>
+        <div style="vertical-align: middle;display:inline-block">
+            <form class="form-signin" action="/FirstApp/thanks/" method="post"s style="float: right">
+                <h2 class="form-signin-heading">Sign-up</h2>
 
+                  {% csrf_token %}
+                  {% for field in form1 %}
+                      <label class="sr-only " for="{{ field.name }}">{{ field.label  }}</label>
+                      {{ field }}
+                  {% endfor %}
+                <button class="btn btn-lg btn-primary btn-block btn-account" type="submit" >Sign-Up</button>
+            </form>
+        </div>
     </div> <!-- /container -->
   </body>
 </html>

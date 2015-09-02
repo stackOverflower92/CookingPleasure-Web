@@ -23,7 +23,11 @@ ul.nav.navbar-nav > li > a {
 a.navbar-brand {
     color: whitesmoke;
 }
-
+a.navbar-brand:focus,
+a.navbar-brand:hover{
+    color: #000000;
+    background-color: #a83513;
+}
 /*
  * Global add-ons
  */
@@ -75,13 +79,16 @@ a.navbar-brand {
   padding-right: 20px;
   padding-left: 20px;
 }
-.nav-sidebar > .active > a,
+.nav-sidebar > .active > a
+{
+  color: #ffffff;
+  background-color: #FF5722;
+}
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #ffffff;
-  background-color: #E64A19;
+    color: #000000;
+    background-color: #a83513;
 }
-
 
 /*
  * Main content
