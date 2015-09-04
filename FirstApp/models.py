@@ -1,20 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 import string
 
 
-class User(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    nickname = models.CharField(max_length=100, unique=True)
-    mail = models.CharField(max_length=100, primary_key=True)
-    password = models.CharField(max_length=50)
+#class MyUser(models.Model):
+ #   user = models.OneToOneField(User, on_delete=models.CASCADE)
+  #  photo = models.ImageField()
+   # def get_full_name(self):
+    #    return '%s %s' % (string.capwords(self.first_name), string.capwords(self.last_name))
 
-    def get_full_name(self):
-        return '%s %s' % (string.capwords(self.first_name), string.capwords(self.last_name))
-
-    def __unicode__(self):
-        return u'%s' % (self.mail)
-
+    #def __unicode__(self):
+     #   return u'%s' % (self.mail)
 
 class Recipe(models.Model):
     Recipe_id = models.AutoField(primary_key=True)
@@ -22,6 +18,7 @@ class Recipe(models.Model):
     content = models.TextField()
     author = models.CharField(max_length=100)
     user = models.ForeignKey(User)
+    photo = models.ImageField(upload_to="photo/", null=True, blank=True)
 
     class Meta:
         ordering = ('name',)

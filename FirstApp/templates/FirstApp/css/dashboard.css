@@ -56,7 +56,7 @@ a.navbar-brand:hover{
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;
-    top: 51px;
+    top: 5px;
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -64,7 +64,7 @@ a.navbar-brand:hover{
     padding: 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
+    background-color: #FF5722;
     border-right: 1px solid #eee;
   }
 }
@@ -74,18 +74,42 @@ a.navbar-brand:hover{
   margin-right: -21px; /* 20px padding + 1px border */
   margin-bottom: 20px;
   margin-left: -20px;
+
 }
-.nav-sidebar > li > a {
+.nav-sidebar > li > a,
+.nav-sidebar > button > a{
   padding-right: 20px;
   padding-left: 20px;
 }
-.nav-sidebar > .active > a
-{
+.nav-sidebar > .active > a{
   color: #ffffff;
   background-color: #FF5722;
 }
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
+    color: #000000;
+    background-color: #a83513;
+}
+.nav-sidebar > .active > button {
+    text-align: left;
+    height: 40px;
+    width: 239px;
+    padding: 0;
+    border: none;
+    color: #ffffff;
+    background-color: #FF5722;
+}
+.button-text{
+    padding-right: 20px;
+    padding-left: 15px;
+    color: #ffffff;
+}
+.nav-sidebar > .active > button:hover{
+    text-align: left;
+    height: 40px;
+    width: 239px;
+    padding: 0;
+    border: none;
     color: #000000;
     background-color: #a83513;
 }
@@ -95,7 +119,9 @@ a.navbar-brand:hover{
  */
 
 .main {
-  padding: 20px;
+  padding-top: 10px;
+  padding-left: 40px;
+
 }
 @media (min-width: 768px) {
   .main {
@@ -125,4 +151,8 @@ a.navbar-brand:hover{
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
+}
+
+.modal-myheader{
+    background-color: #FF5722;
 }

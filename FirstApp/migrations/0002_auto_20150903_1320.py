@@ -2,11 +2,13 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('FirstApp', '0001_initial'),
     ]
 
@@ -27,6 +29,7 @@ class Migration(migrations.Migration):
                 ('List_id', models.AutoField(serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
                 ('ingredients', models.ManyToManyField(to='FirstApp.Ingredient')),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ('name',),
@@ -45,36 +48,30 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
+            name='MyUser',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('photo', models.ImageField(upload_to=b'')),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='Recipe',
             fields=[
                 ('Recipe_id', models.AutoField(serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
                 ('content', models.TextField()),
                 ('author', models.CharField(max_length=100)),
+                ('photo', models.ImageField(upload_to=b'')),
+                ('user', models.ForeignKey(to='FirstApp.MyUser')),
             ],
             options={
                 'ordering': ('name',),
             },
             bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='User',
-            fields=[
-                ('first_name', models.CharField(max_length=50)),
-                ('last_name', models.CharField(max_length=50)),
-                ('nickname', models.CharField(unique=True, max_length=100)),
-                ('mail', models.CharField(max_length=100, serialize=False, primary_key=True)),
-                ('password', models.CharField(max_length=50)),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.AddField(
-            model_name='recipe',
-            name='user',
-            field=models.ForeignKey(to='FirstApp.User'),
-            preserve_default=True,
         ),
         migrations.AddField(
             model_name='menu',
@@ -85,13 +82,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='menu',
             name='user',
-            field=models.ForeignKey(to='FirstApp.User'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='list',
-            name='user',
-            field=models.ForeignKey(to='FirstApp.User'),
+            field=models.ForeignKey(to='FirstApp.MyUser'),
             preserve_default=True,
         ),
         migrations.AddField(

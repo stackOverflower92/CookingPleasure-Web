@@ -27,7 +27,7 @@
 
     <div class="container center" >
         <div style="vertical-align: middle;display:inline-block">
-            <form class="form-signin" action="/FirstApp/dashboard/" method="post" style="float: left">
+            <form class="form-signin" action="/FirstApp/signin/" method="post" style="float: left">
                 <h2 class="form-signin-heading">Please sign in</h2>
                 {% csrf_token %}
                 {% for field in form %}
@@ -43,14 +43,13 @@
             </form>
         </div>
         <div style="vertical-align: middle;display:inline-block">
-            <div class="form-signin" style="float: inherit">
-                <h2 class="form-signin-heading"> - OR -</h2>
+            <div class="form-signin " >
+                <h1 class="form-signin-heading " >- OR -</h1>
             </div>
         </div>
         <div style="vertical-align: middle;display:inline-block">
-            <form class="form-signin" action="/FirstApp/thanks/" method="post"s style="float: right">
+            <form enctype="multipart/form-data" class="form-signin" action="/FirstApp/thanks/" method="post"s style="float: right">
                 <h2 class="form-signin-heading">Sign-up</h2>
-
                   {% csrf_token %}
                   {% for field in form1 %}
                       <label class="sr-only " for="{{ field.name }}">{{ field.label  }}</label>

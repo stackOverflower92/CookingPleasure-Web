@@ -26,7 +26,6 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -67,7 +66,10 @@ DATABASES = {
         'PORT': '',
     }
 }
-
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    )
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
@@ -90,4 +92,7 @@ MEDIA_ROOT = 'FirstApp/templates/FirstApp'
 STATICFILES_DIRS = (
     "FirstApp/templates/FirstApp",
 )
-LOGIN_URL = '/login/'
+LOGIN_URL = '/FirstApp/login/'
+MEDIA_ROOT='home/diego/Scrivania/Linguaggi Dinamici/CookingPleasure-web/CookingPleasure-Web/FirstApp/templates/FirstApp'
+MEDIA_URL = 'http://localhost:8000/FirstApp/'
+
