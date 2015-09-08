@@ -63,27 +63,40 @@ def home(request):
     rec = Recipe.objects.all().filter(user=request.user)
     menu = Menu.objects.all().filter(user=request.user)
     list = List.objects.all().filter(user=request.user)
-    formrec = RecipeForm();
+    formrec = RecipeForm()
+    formmenu = MenuForm(user=request.user)
     template = loader.get_template('FirstApp/dashboard.html')
-    context = RequestContext(request,{'recipe_list':rec,'menu_list':menu,'list_list':list,'recipeform':formrec})
+    context = RequestContext(request,{'recipe_list':rec,'menu_list':menu,'list_list':list,'recipeform':formrec,'menuform':formmenu})
 
     return HttpResponse(template.render(context))
 
 @login_required
-def showRecipe(request):
-    recipelist = Recipe.objects.all()
+def addRecipe(request):
+    if request.method == 'POST': # If the form has been submitted...
+        form = RecipeForm(request.POST,request.FILES)
+        if form.is_valid():
+            print('ok sto inserendo')
+            recipe = form.save(commit = False)
+            recipe.user = request.user
+            recipe.save()
+
+            return HttpResponseRedirect(reverse('FirstApp:home'))
+        print('non ce lho fatta')
+    return HttpResponseRedirect(reverse('FirstApp:home'))
+
+
     template = loader.get_template('FirstApp/dashboard.html')
     context = RequestContext(request,{'recipelist':recipelist})
     return HttpResponse(template.render(context))
 
 @login_required
-def showMenu(request):
+def addMenu(request):
     page = 'FirstApp/dashboard.html'
     context = request
     return render(request, page , context)
 
 @login_required
-def showList(request):
+def addList(request):
     page = 'FirstApp/dashboard.html'
     context = request
     return render(request, page , context)

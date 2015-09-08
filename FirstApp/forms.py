@@ -35,24 +35,45 @@ class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputEmail','placeholder':'Username'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'type':'password', 'id':'inputPassword', 'class':'form-control','placeholder':'Password'}))
 
-class RecipeForm(forms.Form):
-    name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputName','placeholder':'Name'}),required = True)
-    content = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputContent','placeholder':'Content'}),required = True)
+class RecipeForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputName','placeholder':'Recipe Name'}),required = True)
     author = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputAuthor','placeholder':'Author'}),required = True)
-    user = forms.MultipleChoiceField(required = True)
-    photo = forms.ImageField()
+    content = forms.CharField(widget=forms.Textarea(attrs={'class' : 'form-control','id':'inputContent','placeholder':'Content'}),required = True)
     class Meta:
         model = Recipe
-        fields = ('name','content','author','user','photo')
+        exclude = ('user',)
+        fields = ('name','author','content','photo')
 
     def save(self,commit = True):
         recipe = super(RecipeForm, self).save(commit = False)
         recipe.name = self.cleaned_data['name']
         recipe.content = self.cleaned_data['content']
-        recipe.author = self.cleaned_data['author']
-        recipe.user = self.cleaned_data['user']
         recipe.photo = self.cleaned_data['photo']
+        recipe.author = self.cleaned_data['author']
         if commit:
             recipe.save()
         return recipe
+
+class MenuForm(forms.ModelForm):
+
+    name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputName','placeholder':'Menu Name'}),required = True)
+    recipes = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=Recipe.objects.all())
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop("user")
+        super(MenuForm, self).__init__(*args, **kwargs)
+        self.fields['recipes'].queryset = Recipe.objects.all().filter(user = self.user)
+
+    class Meta:
+        model = Menu
+        exclude = ('user',)
+        fields = ('name','recipes',)
+
+    def save(self,commit = True):
+        menu = super(MenuForm, self).save(commit = False)
+        menu.name = self.cleaned_data['name']
+        if commit:
+            menu.save()
+        return menu
+
 

@@ -88,11 +88,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/assets/'
+
 MEDIA_ROOT = 'FirstApp/templates/FirstApp'
 STATICFILES_DIRS = (
     "FirstApp/templates/FirstApp",
 )
 LOGIN_URL = '/FirstApp/login/'
-MEDIA_ROOT='home/diego/Scrivania/Linguaggi Dinamici/CookingPleasure-web/CookingPleasure-Web/FirstApp/templates/FirstApp'
-MEDIA_URL = 'http://localhost:8000/FirstApp/'
 

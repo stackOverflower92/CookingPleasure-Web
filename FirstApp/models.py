@@ -18,7 +18,7 @@ class Recipe(models.Model):
     content = models.TextField()
     author = models.CharField(max_length=100)
     user = models.ForeignKey(User)
-    photo = models.ImageField(upload_to="photo/", null=True, blank=True)
+    photo = models.ImageField(upload_to="FirstApp/photo/", null=True, blank=True)
 
     class Meta:
         ordering = ('name',)
@@ -28,6 +28,7 @@ class Recipe(models.Model):
 class Ingredient(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
     recipes = models.ManyToManyField(Recipe)
+    quantity = models.CharField(max_length=50)
     class Meta:
         ordering = ('name',)
 

@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
             name='Ingredient',
             fields=[
                 ('name', models.CharField(max_length=50, serialize=False, primary_key=True)),
+                ('quantity', models.CharField(max_length=50)),
             ],
             options={
                 'ordering': ('name',),
@@ -48,25 +49,14 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='MyUser',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('photo', models.ImageField(upload_to=b'')),
-                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
             name='Recipe',
             fields=[
                 ('Recipe_id', models.AutoField(serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=100)),
                 ('content', models.TextField()),
                 ('author', models.CharField(max_length=100)),
-                ('photo', models.ImageField(upload_to=b'')),
-                ('user', models.ForeignKey(to='FirstApp.MyUser')),
+                ('photo', models.ImageField(null=True, upload_to=b'photo/', blank=True)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ('name',),
@@ -82,7 +72,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='menu',
             name='user',
-            field=models.ForeignKey(to='FirstApp.MyUser'),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=True,
         ),
         migrations.AddField(
