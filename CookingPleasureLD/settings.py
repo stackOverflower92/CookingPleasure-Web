@@ -87,8 +87,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/assets/'
-
+STATIC_URL = '/FirstApp/templates/FirstApp/'
+MEDIA_URL = '/FirstApp/photo/'
 MEDIA_ROOT = 'FirstApp/templates/FirstApp'
 STATICFILES_DIRS = (
     "FirstApp/templates/FirstApp",

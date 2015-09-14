@@ -153,8 +153,8 @@ a.navbar-brand:hover{
   border-radius: 50%;
 }
 .placeholder .img-responsive {
-  height: 60px;
-
+  height: 90px;
+  width: 90px;
 }
 .modal-header{
     background-color: #FF5722;
@@ -191,6 +191,7 @@ a.navbar-brand:hover{
 }
 #inputContent{
     height: 300px;
+    resize: none;
 }
 .form-signin .form-control:focus {
   z-index: 2;
@@ -201,8 +202,16 @@ a.navbar-brand:hover{
   border-bottom-left-radius: 0;
 }
 .form-signin input:focus {
-  margin-bottom: 5px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+    margin-bottom: 5px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
     border-color: #E64A19;
+}
+
+.circular {
+    width: 200px;
+    height: 200px;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
 }

@@ -14,20 +14,20 @@ import string
 
 class Recipe(models.Model):
     Recipe_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     content = models.TextField()
     author = models.CharField(max_length=100)
-    user = models.ForeignKey(User)
-    photo = models.ImageField(upload_to="FirstApp/photo/", null=True, blank=True)
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to = 'FirstApp/photo/')
     class Meta:
         ordering = ('name',)
     def __unicode__(self):
         return u'%s' % (self.name)
 
 class Ingredient(models.Model):
-    name = models.CharField(max_length=50, primary_key=True)
-    recipes = models.ManyToManyField(Recipe)
+    Ingredient_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+    recipes = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     quantity = models.CharField(max_length=50)
     class Meta:
         ordering = ('name',)
@@ -38,7 +38,7 @@ class Ingredient(models.Model):
 class Menu(models.Model):
     Menu_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     recipes = models.ManyToManyField(Recipe)
     class Meta:
         ordering = ('name',)
@@ -46,10 +46,11 @@ class Menu(models.Model):
     def __unicode__(self):
         return u'%s' % (self.name)
 
+
 class List(models.Model):
     List_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     ingredients = models.ManyToManyField(Ingredient)
     class Meta:
         ordering = ('name',)

@@ -41,28 +41,43 @@ class RecipeForm(forms.ModelForm):
     content = forms.CharField(widget=forms.Textarea(attrs={'class' : 'form-control','id':'inputContent','placeholder':'Content'}),required = True)
     class Meta:
         model = Recipe
-        exclude = ('user',)
-        fields = ('name','author','content','photo')
+        exclude = ('user','photo')
+        fields = ('name','author','content',)
 
     def save(self,commit = True):
         recipe = super(RecipeForm, self).save(commit = False)
         recipe.name = self.cleaned_data['name']
         recipe.content = self.cleaned_data['content']
-        recipe.photo = self.cleaned_data['photo']
         recipe.author = self.cleaned_data['author']
         if commit:
             recipe.save()
         return recipe
 
+class IngredientForm(forms.ModelForm):
+
+    class Meta:
+        model = Ingredient
+        exclude = ('recipe',)
+        fields = ('name','quantity')
+    def save(self,commit = True):
+        ingredient = super(IngredientForm, self).save(commit = False)
+        ingredient.name = self.cleaned_data['name']
+        ingredient.quantity = self.cleaned_data['quantity']
+        if commit:
+            ingredient.save()
+        return ingredient
+
+
 class MenuForm(forms.ModelForm):
 
     name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputName','placeholder':'Menu Name'}),required = True)
-    recipes = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=Recipe.objects.all())
+    recipes = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(), queryset="")
 
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop("user")
+        self.recipes = kwargs.pop("recipes")
         super(MenuForm, self).__init__(*args, **kwargs)
-        self.fields['recipes'].queryset = Recipe.objects.all().filter(user = self.user)
+        self.fields['recipes'].queryset = self.recipes
+
 
     class Meta:
         model = Menu

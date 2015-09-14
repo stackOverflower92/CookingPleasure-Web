@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+{% csrf_token %}
+    {% for field in viewmenuform %}
+        <label class="sr-only " for="{{ field.name }}">{{ field.label  }}</label>
+        {{ field }}
+    {% endfor %}

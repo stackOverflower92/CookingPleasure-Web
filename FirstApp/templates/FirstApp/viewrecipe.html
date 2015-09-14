@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% csrf_token %}
+<div class="row placeholders" id="menuplace">
+    <div class="col-xs-5 placeholder">
+        <img src="{{ viewrecipeform.instance.photo.url }}"  class="circular" />
+    </div>
+    <div class="col-xs-7 placeholder">
+        {% for field in viewrecipeform %}
+
+            <label class="sr-only " for="{{ field.name }}">{{ field.label  }}</label>
+            {{ field }}
+        {% endfor %}
+        <div class="well" id="ingredients-well">
+            {% for ingr in ingredient %}
+                <p class="badge" id = 'badge' style="margin: 1px 1px 1px 1px;"> {{ingr.name}}, {{ ingr.quantity }} </p>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>

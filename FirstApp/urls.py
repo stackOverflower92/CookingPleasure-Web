@@ -9,9 +9,13 @@ urlpatterns = [
     url(r'^dashboard/$', views.home, name='home'),
     url(r'^thanks/$', views.thanks, name='thanks'),
     url(r'^$', include('django.contrib.auth.urls')),
-    url(r'^addrecipe/', views.addRecipe, name='recipe'),
-    url(r'^addmenu', views.addMenu, name='menu'),
-    url(r'^addlist', views.addList, name='list'),
+    url(r'^add_recipe/', views.addRecipe, name='recipe'),
+    url(r'^dashboard/add_ingredients/', views.addIngr, name='ingredients'),
+    url(r'^add_menu', views.addMenu, name='menu'),
+    url(r'^add_list', views.addList, name='list'),
+    url(r'^dashboard/get_recipe/', views.getRecipe, name='grecipe'),
+    url(r'^dashboard/get_menu/', views.getMenu, name='gmenu'),
+
 
 
 ]

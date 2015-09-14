@@ -16,7 +16,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Ingredient',
             fields=[
-                ('name', models.CharField(max_length=50, serialize=False, primary_key=True)),
+                ('Ingredient_id', models.AutoField(serialize=False, primary_key=True)),
+                ('name', models.CharField(max_length=50)),
                 ('quantity', models.CharField(max_length=50)),
             ],
             options={
@@ -52,10 +53,10 @@ class Migration(migrations.Migration):
             name='Recipe',
             fields=[
                 ('Recipe_id', models.AutoField(serialize=False, primary_key=True)),
-                ('name', models.CharField(max_length=100)),
+                ('name', models.CharField(unique=True, max_length=100)),
                 ('content', models.TextField()),
                 ('author', models.CharField(max_length=100)),
-                ('photo', models.ImageField(null=True, upload_to=b'photo/', blank=True)),
+                ('photo', models.ImageField(null=True, upload_to=b'FirstApp/photo/', blank=True)),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -78,7 +79,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='ingredient',
             name='recipes',
-            field=models.ManyToManyField(to='FirstApp.Recipe'),
+            field=models.ForeignKey(to='FirstApp.Recipe'),
             preserve_default=True,
         ),
     ]
