@@ -24,7 +24,7 @@
   </head>
 
   {% load staticfiles %}
-  <body>
+  <body >
     <nav class="navbar navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -70,17 +70,6 @@
             <li class="active">
                 <button type="button" class="mybutton" data-toggle="modal" data-target="#ModalNewMenu" >
                     <a class="button-text">New Menù</a>
-                </button>
-            </li>
-              <li><hr align=”left” size=”1″ width=”300″ color=”#ffffff” noshade></li>
-            <li class="active">
-                <button type="button" class="mybutton" data-toggle="modal" data-target="#ModalNewList" >
-                    <a class="button-text">Shopping List from Recipe</a>
-                </button>
-            </li>
-            <li class="active">
-                <button type="button" class="mybutton" data-toggle="modal" data-target="#ModalNewList" >
-                    <a class="button-text">Shopping List from Menù</a>
                 </button>
             </li>
           </ul>
@@ -136,26 +125,7 @@
             </div>
           </div>
         </div>
-
-        <div class="modal fade bs-example-modal-lg" id="ModalNewList" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header ">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">CP | New Shopping List</h4>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default " type="submit" style="background-color: rgba(255, 87, 34, 0.58)">Insert Shopping List</button>
-                <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      <!-- modal for visualization-->
+          <!-- modal for visualization-->
       <div class="modal fade " id="ModalViewRecipe" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
           <div class="modal-dialog " role="document">
             <div class="modal-content">
@@ -164,13 +134,14 @@
                 <h4 class="modal-title" id="myModalLabel">CP | Load Recipe </h4>
               </div>
               <div class="modal-body ">
-                <form class="form-signin" id="frmViewRecipe"action="" method="post" style="display: inline;">
+                <form class="form-signin" id="frmViewRecipe"action="" method="post" style="display: inline">
                     <!--form be created by jquery-->
                 </form>
               </div>
               <div class="modal-footer">
-                <button  class="btn btn-default " form="frmViewMenu" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Share</button>
-                <button  class="btn btn-default " form="frmViewMenu" type="submit" style="background-color: rgba(255, 87, 34, 0.58)">Modify </button>
+                <button  class="btn btn-default " form="frmViewRecipe" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Share</button>
+                <button  id="btnList" class="btn btn-default " form="frmViewRecipe" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Create Shopping List</button>
+                <button  class="btn btn-default " form="frmViewRecipe" type="submit" style="background-color: rgba(255, 87, 34, 0.58)">Modify </button>
                 <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -186,6 +157,28 @@
               </div>
               <div class="modal-body ">
                 <form class="form-signin" id="frmViewMenu"action="" method="post">
+                    <!--form be created by jquery-->
+                </form>
+              </div>
+              <div class="modal-footer">
+
+                <button  class="btn btn-default " form="frmViewMenu" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Share</button>
+                <button  class="btn btn-default " form="frmViewMenu" type="submit" style="background-color: rgba(255, 87, 34, 0.58)">Modify </button>
+                <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="modal fade " id="ModalViewList" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+          <div class="modal-dialog " role="document">
+            <div class="modal-content">
+              <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">CP | Load Shopping List </h4>
+              </div>
+              <div class="modal-body ">
+                <form class="form-signin" id="frmViewList"action="" method="post">
                     <!--form be created by jquery-->
                 </form>
               </div>
@@ -246,11 +239,11 @@
             <div class=" ">
               <h1 class="page-header">Shopping List:</h1>
 
-              <div class="row placeholders">
+              <div class="row placeholders" id="listplace">
                   {% if list_list %}
                      {% for list in list_list %}
                           <div class="col-xs-6 col-sm-3 placeholder">
-                              <button type="button" class="btn btn-default" id="btnGetMenu" style="border-radius: 80%;border-color: transparent;background: transparent" data-toggle="modal" data-target="#ModalViewMenu" >
+                              <button type="button" class="btn btn-default" id="btnGetList" style="border-radius: 80%;border-color: transparent;background: transparent" data-toggle="modal" data-target="#ModalViewList" >
                                   {% load staticfiles %}
                                   <img src={% static "photo/list.jpg" %} class="img-responsive" alt="List Image">
                               </button>

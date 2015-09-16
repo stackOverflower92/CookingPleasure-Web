@@ -12,9 +12,10 @@ urlpatterns = [
     url(r'^add_recipe/', views.addRecipe, name='recipe'),
     url(r'^dashboard/add_ingredients/', views.addIngr, name='ingredients'),
     url(r'^add_menu', views.addMenu, name='menu'),
-    url(r'^add_list', views.addList, name='list'),
+    url(r'^dashboard/add_list', views.addList, name='list'),
     url(r'^dashboard/get_recipe/', views.getRecipe, name='grecipe'),
     url(r'^dashboard/get_menu/', views.getMenu, name='gmenu'),
+    url(r'^dashboard/get_list/', views.getList, name='glist'),
 
 
 

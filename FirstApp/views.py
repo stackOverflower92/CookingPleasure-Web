@@ -111,24 +111,19 @@ def addIngr(request):
         q_list = request.POST.getlist('q[]')
         recipe = request.POST.get('recipe')
         rec = Recipe.objects.get(name=recipe)
-        while cont<ingrnum:
+        print(request.POST)
+        while cont < ingrnum:
             name = ing_list[cont]
             q = q_list[cont]
-            ingr = Ingredient(name=name,quantity=q,recipes=rec)
-            ingr.save()
+            ingredient = Ingredient(name=name,quantity=q,recipes=rec)
+            ingredient.save()
             cont=cont+1
-        print("siamo qua")
-
-        return HttpResponseRedirect(reverse('FirstApp:home'))
-
-    print('problems')
     return HttpResponseRedirect(reverse('FirstApp:home'))
 
 @csrf_protect
 @login_required
 def addMenu(request):
     if request.method == 'POST': # If the form has been submitted...
-        print("ok e una posto")
         recipes = Recipe.objects.all().filter(user = request.user)
         form = MenuForm(request.POST,recipes=recipes)
         if form.is_valid():
@@ -148,12 +143,21 @@ def addMenu(request):
 
     return HttpResponseRedirect(reverse('FirstApp:home'))
 
-
+@csrf_protect
 @login_required
 def addList(request):
-    page = 'FirstApp/dashboard.html'
-    context = request
-    return render(request, page , context)
+    if request.method == 'POST': # If the form has been submitted...
+        list = request.POST.get("list")
+        rec = Recipe.objects.get(name=list)
+        ingredients = Ingredient.objects.all().filter(recipes = rec)
+        print(ingredients)
+        name = "Shopping List for "+list
+        list = List(name= name,user=request.user)
+        list.save()
+        for ingred in ingredients:
+            print(ingred)
+            list.ingredients.add(ingred)
+    return HttpResponseRedirect(reverse('FirstApp:home'))
 
 @csrf_protect
 @login_required
@@ -182,6 +186,21 @@ def getMenu(request):
         recipes = menu.recipes
         viewmenuform = MenuForm(instance=menu,recipes=recipes)
         form = render_to_string('FirstApp/viewmenu.html', {'viewmenuform':viewmenuform},
+                                        context_instance=RequestContext(request))
+        return HttpResponse(form,status=200)
+    except Recipe.DoesNotExist:
+        return HttpResponse(u'no recipe',status=400)
+    except Exception as e:
+        return HttpResponse('%s %s' % (e.message,e.args),status=500)
+
+@csrf_protect
+@login_required
+def getList(request):
+    try:
+        listname = request.POST.get('listname')
+        user = request.user
+        list = List.objects.get(name=listname, user=user)
+        form = render_to_string('FirstApp/viewlist.html', {'list':list.name,'ingredients':list.ingredients.all()},
                                         context_instance=RequestContext(request))
         return HttpResponse(form,status=200)
     except Recipe.DoesNotExist:
