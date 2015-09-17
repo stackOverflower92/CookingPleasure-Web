@@ -25,6 +25,7 @@
 
   {% load staticfiles %}
   <body >
+  <div id="fb-root"></div>
     <nav class="navbar navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -46,22 +47,15 @@
             <li><a href="/FirstApp/logout/">Log Out</a></li>
           </ul>
           <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
+            <input id="SEARCH"type="text" class="form-control" placeholder="Search...">
           </form>
         </div>
       </div>
     </nav>
-
     <div class="container-fluid">
       <div class="row " >
         <div class="col-sm-3 col-md-2 sidebar">
-         <!-- <ul class="nav nav-sidebar">       the left side menu hidden
-            <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-            <li class="active"><a href="/FirstApp/dashboard/recipe/">Recipe</a></li>
-            <li class="active"><a href="/FirstApp/dashboard/menu">Menù</a></li>
-            <li class="active"><a href="/FirstApp/dashboard/list">Shopping List</a></li>
-          </ul> -->
-          <ul class="nav nav-sidebar">
+           <ul class="nav nav-sidebar">
             <li class="active">
                 <button type="button" class="mybutton" data-toggle="modal" data-target="#ModalNewRecipe" >
                     <a class="button-text">New Recipe</a>
@@ -72,7 +66,9 @@
                     <a class="button-text">New Menù</a>
                 </button>
             </li>
-          </ul>
+            <li class="active">
+            </li>
+           </ul>
         </div>
           <!-- Modal -->
         <div class="modal fade " id="ModalNewRecipe" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -140,7 +136,7 @@
               </div>
               <div class="modal-footer">
                 <button  class="btn btn-default " form="frmViewRecipe" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Share</button>
-                <button  id="btnList" class="btn btn-default " form="frmViewRecipe" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Create Shopping List</button>
+                <button  id="btnListRecipe" class="btn btn-default " form="frmViewRecipe" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Create Shopping List</button>
                 <button  class="btn btn-default " form="frmViewRecipe" type="submit" style="background-color: rgba(255, 87, 34, 0.58)">Modify </button>
                 <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
               </div>
@@ -163,7 +159,8 @@
               <div class="modal-footer">
 
                 <button  class="btn btn-default " form="frmViewMenu" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Share</button>
-                <button  class="btn btn-default " form="frmViewMenu" type="submit" style="background-color: rgba(255, 87, 34, 0.58)">Modify </button>
+                <button  id="btnListMenu" class="btn btn-default " form="frmViewMenu" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Create Shopping List</button>
+                <button  class="btn btn-default " form="frmViewMenu" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Modify </button>
                 <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -200,7 +197,7 @@
                   {% if recipe_list %}
                       {% for recipe in recipe_list %}
                           <div class="col-xs-6 col-sm-3 placeholder">
-                              <button type="button" class="btn btn-default" id="btnGetRecipe" style="border-radius: 80%;border-color: transparent;background: transparent" data-toggle="modal" data-target="#ModalViewRecipe" >
+                              <button type="button" class="btn btn-default my buttonrecipe" id="btnGetRecipe" style="border-radius: 80%;border-color: transparent;background: transparent" data-toggle="modal" data-target="#ModalViewRecipe" >
                                   {% if recipe.photo %}
                                       <img src= "{{ MEDIA_URL }}{{ recipe.photo }}" class="img-responsive" alt="Recipe Image">
                                   {% else %}
@@ -210,6 +207,17 @@
                               </button>
                               <h4 id="recipename">{{ recipe.name }}</h4>
                               <span class="text-muted">{{ recipe.author }}</span>
+                            <!--  <div id="divrecipe" style="display: none;">
+                                  <p>
+                                      <a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-hashtags="CookingPleasure">Tweet</a>
+                                  </p>
+                                  <p>
+                                    <div class="fb-share-button" data-href="http://127.0.0.1:8000/FirstApp/dashboard/" data-layout="button"></div>
+                                  </p>
+                                  <p>
+                                    <div class="g-plus" data-action="share" data-annotation="none" data-href="http://127.0.0.1:8000/FirstApp/dashboard/"></div>
+                                  </p>
+                              </div>-->
                           </div>
                       {% endfor %}
                   {% else %}
@@ -223,12 +231,23 @@
                   {% if menu_list %}
                       {% for menu in menu_list %}
                           <div class="col-xs-6 col-sm-3 placeholder">
-                              <button type="button" class="btn btn-default" id="btnGetMenu" style="border-radius: 80%;border-color: transparent;background: transparent" data-toggle="modal" data-target="#ModalViewMenu" >
+                              <button type="button" class="btn btn-default buttonmenu my" id="btnGetMenu" style="border-radius: 80%;border-color: transparent;background: transparent" data-toggle="modal" data-target="#ModalViewMenu" >
                                   {% load staticfiles %}
                                   <img src={% static "photo/Menu.jpg" %} class="img-responsive" alt="Menu Image">
                               </button>
                               <h4>{{ menu.name }}</h4>
                               <span class="text-muted">{{ menu.author }}</span>
+                          <!--<div id="divmenu"style="display: none;">
+                                  <p>
+                                      <a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-hashtags="CookingPleasure">Tweet</a>
+                                  </p>
+                                  <p>
+                                    <div class="fb-share-button" data-href="http://127.0.0.1:8000/FirstApp/dashboard/" data-layout="button"></div>
+                                  </p>
+                                  <p>
+                                    <div class="g-plus" data-action="share" data-annotation="none" data-href="http://127.0.0.1:8000/FirstApp/dashboard/"></div>
+                                  </p>
+                              </div>-->
                           </div>
                       {% endfor %}
                   {% else %}
@@ -243,12 +262,23 @@
                   {% if list_list %}
                      {% for list in list_list %}
                           <div class="col-xs-6 col-sm-3 placeholder">
-                              <button type="button" class="btn btn-default" id="btnGetList" style="border-radius: 80%;border-color: transparent;background: transparent" data-toggle="modal" data-target="#ModalViewList" >
+                              <button type="button" class="btn btn-default my buttonlist" id="btnGetList" style="border-radius: 80%;border-color: transparent;background: transparent" data-toggle="modal" data-target="#ModalViewList" >
                                   {% load staticfiles %}
                                   <img src={% static "photo/list.jpg" %} class="img-responsive" alt="List Image">
                               </button>
                               <h4>{{ list.name }}</h4>
                               <span class="text-muted">{{ list.author }}</span>
+                       <!--   <div id="divlist"style="display: none;">
+                                  <p>
+                                      <a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-hashtags="CookingPleasure">Tweet</a>
+                                  </p>
+                                  <p>
+                                    <div class="fb-share-button" data-href="http://127.0.0.1:8000/FirstApp/dashboard/" data-layout="button"></div>
+                                  </p>
+                                  <p>
+                                    <div class="g-plus" data-action="share" data-annotation="none" data-href="http://127.0.0.1:8000/FirstApp/dashboard/"></div>
+                                  </p>
+                              </div>-->
                           </div>
                       {% endfor %}
                   {% else %}
@@ -267,12 +297,30 @@
     <!-- Placed at the end of the document so the pages load faster -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://malsup.github.com/jquery.form.js"></script>
-
-
+    <script>
+        !function(d,s,id){
+            var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+            if(!d.getElementById(id)){js=d.createElement(s);
+                js.id=id;
+                js.src=p+'://platform.twitter.com/widgets.js';
+                fjs.parentNode.insertBefore(js,fjs);
+            }}(document, 'script', 'twitter-wjs');
+    </script>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v2.4";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer>
+        {lang: 'it'}
+    </script>
     {% load staticfiles %}
         <script src="{% static "js/bootstrap.min.js" %}"></script>
         <script src="{% static "js/main.js" %}"></script>
+        <script src="{% static "js/ajaxform.js"%}"></script>
   </body>
 </html>
 

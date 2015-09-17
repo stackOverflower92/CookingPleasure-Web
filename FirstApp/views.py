@@ -161,6 +161,27 @@ def addList(request):
 
 @csrf_protect
 @login_required
+def addListMenu(request):
+    if request.method == 'POST': # If the form has been submitted...
+        list = request.POST.get("list")
+        menu = Menu.objects.get(name=list,user=request.user)
+        recipe_list=[]
+        for recipe in menu.recipes.all():
+            print(recipe)
+            ingred = Ingredient.objects.all().filter(recipes = recipe)
+            recipe_list.append(ingred)
+            print(ingred)
+        name = "Shopping List for "+list
+        list = List(name= name,user=request.user)
+        list.save()
+        for recipe in recipe_list:
+            for ingred in recipe:
+                print(ingred)
+                list.ingredients.add(ingred)
+    return HttpResponseRedirect(reverse('FirstApp:home'))
+
+@csrf_protect
+@login_required
 def getRecipe(request):
     try:
         recipename = request.POST.get('recipename')

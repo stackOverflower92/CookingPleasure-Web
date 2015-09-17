@@ -4,6 +4,7 @@
 
 
 $(document).ready(function() {
+
     // Init tooltips
     $(function () {
       $('[data-toggle="tooltip"]').tooltip();
@@ -93,10 +94,9 @@ $(document).ready(function() {
         return false;
     });
 
-    $('#btnList').click( function(e){
+    $('#btnListRecipe').click( function(e){
         token = $('input[name="csrfmiddlewaretoken"]').prop('value');
         list = $('#frmViewRecipe').find('#inputName').val();
-        console.log(list)
         date={list:list, csrfmiddlewaretoken: token} ;
         $.ajax({ // create an AJAX call...
             data: date , // get the form data
@@ -107,6 +107,25 @@ $(document).ready(function() {
             },
             complete: function(data){
                 return false;
+            },
+            error : function(xhr,errmsg,err) {
+                $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+    });
+    $('#btnListMenu').click( function(e){
+        console.log("button list_menu")
+        token = $('input[name="csrfmiddlewaretoken"]').prop('value');
+        list = $('#frmViewMenu').find('#inputName').val();
+        date1={list:list, csrfmiddlewaretoken: token} ;
+        $.ajax({ // create an AJAX call...
+            data: date1 , // get the form data
+            type: "POST", // GET or POST
+            url: "add_list_menu/", // the file to call
+            success: function(data){
+                window.location.href = "/FirstApp/dashboard/";
             },
             error : function(xhr,errmsg,err) {
                 $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
@@ -180,5 +199,27 @@ $(document).ready(function() {
                 console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
             }
         });
+    });
+    cont=0;
+    word="";
+    $('#SEARCH').keyup(function(){
+        console.log("prova");
+        var valThis = $(this).val();
+        $('.placeholders').children('.placeholder').each(function(){
+            var text = $(this).children('h4').text().toLowerCase();
+            (text.indexOf(valThis) == 0) ? $(this).show() : $(this).hide();
+   });
+    });
+     $('.buttonrecipe').hover(function(){
+     });
+    $('.buttonmenu').hover(function(){
+     });
+    $('.buttonlist').hover(function(){
+     });
+    $('.buttonrecipe').mouseout(function(){
+     });
+    $('.buttonmenu').mouseout(function(){
+    });
+    $('.buttonlist').mouseout(function(){
     });
 });
