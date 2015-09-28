@@ -2,9 +2,8 @@ from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.firstapp,name='firstapp'),
-    url(r'^login/$', views.logs, name='login'),
-    url(r'^signin/$',views.signin,name='signin'),
+    url(r'^$', views.home,name='firstapp'),
+    url(r'^login/$',views.logins,name='login'),
     url(r'^logout/$',views.signout,name='logout'),
     url(r'^dashboard/$', views.home, name='home'),
     url(r'^thanks/$', views.thanks, name='thanks'),
@@ -17,4 +16,11 @@ urlpatterns = [
     url(r'^dashboard/get_recipe/', views.getRecipe, name='grecipe'),
     url(r'^dashboard/get_menu/', views.getMenu, name='gmenu'),
     url(r'^dashboard/get_list/', views.getList, name='glist'),
+    url(r'^dashboard/delete_recipe/', views.deleteRecipe, name='delrecipe'),
+    url(r'^dashboard/delete_menu/', views.deleteMenu, name='delmenu'),
+    url(r'^dashboard/delete_list/', views.deleteList, name='dellist'),
+    url(r'^contact_us/', views.contactUs, name='contactus'),
+    url(r'^dashboard/mail_recipe/', views.mailRecipe, name='mailrecipe'),
+    url(r'^dashboard/mail_menu/', views.mailMenu, name='mailmenu'),
+    url(r'^dashboard/mail_list/', views.mailList, name='maillist'),
 ]

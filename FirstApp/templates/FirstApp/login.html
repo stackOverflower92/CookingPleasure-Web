@@ -27,18 +27,13 @@
 
     <div class="container center" >
         <div style="vertical-align: middle;display:inline-block">
-            <form class="form-signin" action="/FirstApp/signin/" method="post" style="float: left">
+            <form class="form-signin" action="/FirstApp/login/" method="post" style="float: left">
                 <h2 class="form-signin-heading">Please sign in</h2>
                 {% csrf_token %}
                 {% for field in form %}
                     <label class="sr-only " for="{{ field.name }}">{{ field.label  }}</label>
                     {{ field }}
                 {% endfor %}
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                </div>
                 <button class="btn btn-lg btn-primary btn-block btn-login" type="submit" >Let's Cook!</button>
             </form>
         </div>

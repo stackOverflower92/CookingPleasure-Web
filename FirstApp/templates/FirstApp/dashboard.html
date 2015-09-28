@@ -11,11 +11,6 @@
 
     <title>Cooking Pleasure | Home</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
 
       {% load staticfiles %}
     <link rel="stylesheet" href="{% static "css/dashboard.css" %}" />
@@ -24,26 +19,23 @@
   </head>
 
   {% load staticfiles %}
-  <body >
-  <div id="fb-root"></div>
+  <body style="background-color: #e8e9e3">
+
     <nav class="navbar navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <button type="button" id="toggle"class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Cooking Pleasure - Hi, {{ user.first_name }} {{ user.last_name }}</a>
+          <a class="navbar-brand" href="#"> Hi, {{ user.first_name }} {{ user.last_name }}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-            <li><a href="#">Contacts us</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#ModalProfile">Profile</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#ModalContact">Contacts us</a></li>
             <li><a href="/FirstApp/logout/">Log Out</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -52,24 +44,6 @@
         </div>
       </div>
     </nav>
-    <div class="container-fluid">
-      <div class="row " >
-        <div class="col-sm-3 col-md-2 sidebar">
-           <ul class="nav nav-sidebar">
-            <li class="active">
-                <button type="button" class="mybutton" data-toggle="modal" data-target="#ModalNewRecipe" >
-                    <a class="button-text">New Recipe</a>
-                </button>
-            </li>
-            <li class="active">
-                <button type="button" class="mybutton" data-toggle="modal" data-target="#ModalNewMenu" >
-                    <a class="button-text">New Menù</a>
-                </button>
-            </li>
-            <li class="active">
-            </li>
-           </ul>
-        </div>
           <!-- Modal -->
         <div class="modal fade " id="ModalNewRecipe" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
           <div class="modal-dialog " role="document">
@@ -85,7 +59,7 @@
                         <label class="sr-only " for="{{ field.name }}">{{ field.label  }}</label>
                         {{ field }}
                     {% endfor %}
-                    <input type="file" id="photo" name="photo"/>
+                    <input type="file" id="photo" name="photo" required="true"/>
                     <Input class = 'form-control' id='inputIngredients' data-toggle="tooltip" title="Separate ingredient name and quantity using colon character. Type a semicolon to add current ingredient to your list." placeholder ='Ingredient, quantity;'>
                     <div class="well" id="ingredients-well">
                     </div>
@@ -135,9 +109,9 @@
                 </form>
               </div>
               <div class="modal-footer">
-                <button  class="btn btn-default " form="frmViewRecipe" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Share</button>
+                <button  id="btnMailRecipe" class="btn btn-default " form="frmViewRecipe" type="button" style="background-color: rgba(255, 87, 34, 0.58)">get mail</button>
                 <button  id="btnListRecipe" class="btn btn-default " form="frmViewRecipe" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Create Shopping List</button>
-                <button  class="btn btn-default " form="frmViewRecipe" type="submit" style="background-color: rgba(255, 87, 34, 0.58)">Modify </button>
+                <button  id="btnDeleteRecipe" class="btn btn-default " form="frmViewRecipe" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Delete </button>
                 <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -152,15 +126,15 @@
                 <h4 class="modal-title" id="myModalLabel">CP | Load Menù </h4>
               </div>
               <div class="modal-body ">
-                <form class="form-signin" id="frmViewMenu"action="" method="post">
+                <form class="form-signin" id="frmViewMenu"action="" method="post" style="display: inline">
                     <!--form be created by jquery-->
                 </form>
               </div>
               <div class="modal-footer">
 
-                <button  class="btn btn-default " form="frmViewMenu" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Share</button>
+                <button  id="btnMailMenu" class="btn btn-default " form="frmViewMenu" type="button" style="background-color: rgba(255, 87, 34, 0.58)">get mail</button>
                 <button  id="btnListMenu" class="btn btn-default " form="frmViewMenu" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Create Shopping List</button>
-                <button  class="btn btn-default " form="frmViewMenu" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Modify </button>
+                <button  id="btnDeleteMenu"class="btn btn-default " form="frmViewMenu" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Delete </button>
                 <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -175,49 +149,90 @@
                 <h4 class="modal-title" id="myModalLabel">CP | Load Shopping List </h4>
               </div>
               <div class="modal-body ">
-                <form class="form-signin" id="frmViewList"action="" method="post">
+                <form class="form-signin" id="frmViewList"action="" method="post" style="display: inline">
                     <!--form be created by jquery-->
                 </form>
               </div>
               <div class="modal-footer">
 
-                <button  class="btn btn-default " form="frmViewMenu" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Share</button>
-                <button  class="btn btn-default " form="frmViewMenu" type="submit" style="background-color: rgba(255, 87, 34, 0.58)">Modify </button>
+                <button  id="btnMailList" class="btn btn-default " form="frmViewList" type="button" style="background-color: rgba(255, 87, 34, 0.58)">get mail</button>
+                <button  id="btnDeleteList"class="btn btn-default " form="frmViewList" type="button" style="background-color: rgba(255, 87, 34, 0.58)">Delete </button>
                 <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
         </div>
 
+  <!-- modal contact us  -->
+        <div class="modal fade " id="ModalContact" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+          <div class="modal-dialog " role="document">
+            <div class="modal-content">
+              <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">CP | Contact us!</h4>
+              </div>
+              <div class="modal-body ">
+                <form method="post" id="frmcontact"action="/FirstApp/contact_us/">
+                    {% csrf_token %}
+                    <div style="margin-left: 10%;margin-right: 10%">
+                        <input class ='form-control' type="text" name="name" id="contact-name" placeholder="Name" style="margin-bottom: 5px" required="true"/>
+                        <input class ='form-control' type="email" name="email" id="contact-email" placeholder="Email" style="margin-bottom: 5px" required="true"/>
+                        <textarea class ='form-control' name="message" id="contact-message" placeholder="Message" rows="4" required="true"></textarea>
+                    </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                  <input type="submit" class="btn btn-default" form="frmcontact" value="Send" style="background-color: rgba(255, 87, 34, 0.58)"/></li>
+                  <input type="reset" class="btn btn-default" form="frmcontact" value="Reset" style="background-color: rgba(255, 87, 34, 0.58)"/></li>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- modal profile-->
+        <div class="modal fade " id="ModalProfile" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+          <div class="modal-dialog " role="document">
+            <div class="modal-content">
+              <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">CP | Profile</h4>
+              </div>
+              <div class="modal-body ">
+                <form method="post" id="frmprofile">
+                    {% csrf_token %}
+                    <div class="row placeholders">
+                        <div class="col-xs-12 placeholder">
+
+                            <label class ='form-control' id="inputUsername" style="min-height:50px;text-align: left">Username:<br>{{ user.username }}</label>
+                            <label class ='form-control' id="inputEmail" style="min-height:50px;text-align: left">Email: <br> {{ user.email }}</label>
+                            <label class ='form-control' id="inputFirstName" style="min-height:50px;text-align: left">First Name:<br>{{ user.first_name }}</label>
+                            <label class ='form-control' id="inputLastName" style="min-height:50px;text-align: left">Last Name: <br> {{ user.last_name }}</label>
+                        </div>
+                    </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <!--modal end-->
-        <div class="col-sm-9  col-md-10 main">
-            <div class="  ">
-              <h1 class="page-header">Recipe:</h1>
+        <div class="col-sm-1  col-md-12 main">
+            <div>
+
+              <h1 class="page-header">
+                      {% load staticfiles %}
+                      <input type="image" src="{% static "images/add.jpg" %}" class="button-add" alt="+" data-toggle="modal" data-target="#ModalNewRecipe">
+                  Recipe:</h1>
                 <div class="row placeholders" id="recipeplace">
                   {% if recipe_list %}
                       {% for recipe in recipe_list %}
                           <div class="col-xs-6 col-sm-3 placeholder">
-                              <button type="button" class="btn btn-default my buttonrecipe" id="btnGetRecipe" style="border-radius: 80%;border-color: transparent;background: transparent" data-toggle="modal" data-target="#ModalViewRecipe" >
-                                  {% if recipe.photo %}
-                                      <img src= "{{ MEDIA_URL }}{{ recipe.photo }}" class="img-responsive" alt="Recipe Image">
-                                  {% else %}
-                                      {% load staticfiles %}
-                                      <img src={% static "photo/recipe.jpg" %} class="img-responsive" alt="Recipe Image">
-                                  {% endif %}
-                              </button>
+                              <input id="btnGetRecipe" type="image" src= "{{ MEDIA_URL }}{{ recipe.photo }}" class="img-responsive" alt="Recipe Image" data-toggle="modal" data-target="#ModalViewRecipe">
                               <h4 id="recipename">{{ recipe.name }}</h4>
                               <span class="text-muted">{{ recipe.author }}</span>
-                            <!--  <div id="divrecipe" style="display: none;">
-                                  <p>
-                                      <a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-hashtags="CookingPleasure">Tweet</a>
-                                  </p>
-                                  <p>
-                                    <div class="fb-share-button" data-href="http://127.0.0.1:8000/FirstApp/dashboard/" data-layout="button"></div>
-                                  </p>
-                                  <p>
-                                    <div class="g-plus" data-action="share" data-annotation="none" data-href="http://127.0.0.1:8000/FirstApp/dashboard/"></div>
-                                  </p>
-                              </div>-->
+
                           </div>
                       {% endfor %}
                   {% else %}
@@ -226,28 +241,19 @@
               </div>
           </div>
             <div class=" ">
-              <h1 class="page-header">Menù:</h1>
+              <h1 class="page-header">
+                  {% load staticfiles %}
+                      <input type="image" src="{% static "images/add.jpg" %}" class="button-add" alt="+" data-toggle="modal" data-target="#ModalNewMenu">
+                  Menù:</h1>
                 <div class="row placeholders" id="menuplace">
                   {% if menu_list %}
                       {% for menu in menu_list %}
                           <div class="col-xs-6 col-sm-3 placeholder">
-                              <button type="button" class="btn btn-default buttonmenu my" id="btnGetMenu" style="border-radius: 80%;border-color: transparent;background: transparent" data-toggle="modal" data-target="#ModalViewMenu" >
                                   {% load staticfiles %}
-                                  <img src={% static "photo/Menu.jpg" %} class="img-responsive" alt="Menu Image">
-                              </button>
+                                  <input id="btnGetMenu" type="image" src={% static "images/Menu.jpg" %} class="img-responsive" alt="Menu Image" data-toggle="modal" data-target="#ModalViewMenu">
                               <h4>{{ menu.name }}</h4>
                               <span class="text-muted">{{ menu.author }}</span>
-                          <!--<div id="divmenu"style="display: none;">
-                                  <p>
-                                      <a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-hashtags="CookingPleasure">Tweet</a>
-                                  </p>
-                                  <p>
-                                    <div class="fb-share-button" data-href="http://127.0.0.1:8000/FirstApp/dashboard/" data-layout="button"></div>
-                                  </p>
-                                  <p>
-                                    <div class="g-plus" data-action="share" data-annotation="none" data-href="http://127.0.0.1:8000/FirstApp/dashboard/"></div>
-                                  </p>
-                              </div>-->
+
                           </div>
                       {% endfor %}
                   {% else %}
@@ -262,23 +268,10 @@
                   {% if list_list %}
                      {% for list in list_list %}
                           <div class="col-xs-6 col-sm-3 placeholder">
-                              <button type="button" class="btn btn-default my buttonlist" id="btnGetList" style="border-radius: 80%;border-color: transparent;background: transparent" data-toggle="modal" data-target="#ModalViewList" >
-                                  {% load staticfiles %}
-                                  <img src={% static "photo/list.jpg" %} class="img-responsive" alt="List Image">
-                              </button>
+                              {% load staticfiles %}
+                              <input id="btnGetList" type="image"  src={% static "images/list.jpg" %} class="img-responsive" alt="List Image" data-toggle="modal" data-target="#ModalViewList">
                               <h4>{{ list.name }}</h4>
                               <span class="text-muted">{{ list.author }}</span>
-                       <!--   <div id="divlist"style="display: none;">
-                                  <p>
-                                      <a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-hashtags="CookingPleasure">Tweet</a>
-                                  </p>
-                                  <p>
-                                    <div class="fb-share-button" data-href="http://127.0.0.1:8000/FirstApp/dashboard/" data-layout="button"></div>
-                                  </p>
-                                  <p>
-                                    <div class="g-plus" data-action="share" data-annotation="none" data-href="http://127.0.0.1:8000/FirstApp/dashboard/"></div>
-                                  </p>
-                              </div>-->
                           </div>
                       {% endfor %}
                   {% else %}
@@ -297,26 +290,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-        !function(d,s,id){
-            var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-            if(!d.getElementById(id)){js=d.createElement(s);
-                js.id=id;
-                js.src=p+'://platform.twitter.com/widgets.js';
-                fjs.parentNode.insertBefore(js,fjs);
-            }}(document, 'script', 'twitter-wjs');
-    </script>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v2.4";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <script src="https://apis.google.com/js/platform.js" async defer>
-        {lang: 'it'}
-    </script>
+
     {% load staticfiles %}
         <script src="{% static "js/bootstrap.min.js" %}"></script>
         <script src="{% static "js/main.js" %}"></script>

@@ -1,7 +1,3 @@
-/**
- * Created by diego on 08/09/15.
- */
-
 
 $(document).ready(function() {
 
@@ -29,12 +25,15 @@ $(document).ready(function() {
             tempContent[0] = tempContent[0].replace(/\s+/g, ' ').trim();
             content = (tempContent[0] + ', ' + tempContent[1]);
                     // Insert ingredient into tag
-            content = "<p class=\"badge\" id = 'badge' style=\"margin: 1px 1px 1px 1px;\"> " + content + "</p>";
+            content= "<div class=\"badgeHolder\"style=\"margin: 1px 1px 1px 1px;\"><span class=\"btn badge badge-primary badge-btn\"><span class=\"badge badge-success badge-xs\">"+ content +"</span><span aria-hidden=\"true\">&times;</span></span></div>"
                     // Ad this to well
             $("#ingredients-well").append(content);
         }
     });
-
+    $(document).on("click", ".badge-primary", function(e) {
+        console.log("ciao");
+        $(this).closest('.badgeHolder').remove();
+    });
     $('#frmRecipe').ajaxForm(function() { // catch the form's submit event
         token = $('input[name="csrfmiddlewaretoken"]').prop('value');
         var badgenum = 0;
@@ -47,9 +46,12 @@ $(document).ready(function() {
             success: function (data) {
                 $('#ingredients-well').children().each(function () {
                     val = $(this).text();
+                    console.log(val);
                     nam = val.substr(0,val.indexOf(","));
-                    console.log(nam)
+                    console.log(nam);
                     q = val.substr(val.indexOf(",")+2);
+                    q = q.replace("×"," ");
+                    console.log(q);
                     name[badgenum]=nam;
                     quant[badgenum]=q;
                     badgenum=badgenum+1;
@@ -77,7 +79,8 @@ $(document).ready(function() {
         quant.lenght = 0;
         return false;
     });
-    $('#frmMenu').submit(function() { // catch the form's submit event
+
+    $('#frmcontact').submit(function() { // catch the form's submit event
         $.ajax({ // create an AJAX call...
             data: $(this).serialize() , // get the form data
             type: $(this).attr('method'), // GET or POST
@@ -94,9 +97,89 @@ $(document).ready(function() {
         return false;
     });
 
+    $('#frmMenu').submit(function() { // catch the form's submit event
+        $.ajax({ // create an AJAX call...
+            data: $(this).serialize() , // get the form data
+            type: $(this).attr('method'), // GET or POST
+            url: $(this).attr('action'), // the file to call
+            success : function(response,status) {
+                         window.location.href = "/FirstApp/dashboard/";
+            },
+            error : function(xhr,errmsg,err) {
+                $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+        return false;
+    });
+    $('#btnMailRecipe').click( function(e){
+        token = $('input[name="csrfmiddlewaretoken"]').prop('value');
+        recipename = $('#frmViewRecipe').find('#inputName').text();
+        recipename = recipename.substr(recipename.indexOf(":")+1);
+        date={recipename:recipename, csrfmiddlewaretoken: token} ;
+        $.ajax({ // create an AJAX call...
+            data: date , // get the form data
+            type: "POST", // GET or POST
+            url: "mail_recipe/", // the file to call
+            success: function(data){
+                window.location.href = "/FirstApp/dashboard/";
+            },
+            complete: function(data){
+                return false;
+            },
+            error : function(xhr,errmsg,err) {
+                $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+    });
+    $('#btnMailMenu').click( function(e){
+        token = $('input[name="csrfmiddlewaretoken"]').prop('value');
+        menuname = $('#frmViewMenu').find('#inputName').text();
+        menuname = menuname.substr(menuname.indexOf(":")+2);
+        console.log(menuname);
+        date1={menuname:menuname, csrfmiddlewaretoken: token} ;
+        $.ajax({ // create an AJAX call...
+            data: date1 , // get the form data
+            type: "POST", // GET or POST
+            url: "mail_menu/", // the file to call
+            success: function(data){
+                window.location.href = "/FirstApp/dashboard/";
+            },
+            error : function(xhr,errmsg,err) {
+                $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+    });
+     $('#btnMailList').click( function(e){
+        token = $('input[name="csrfmiddlewaretoken"]').prop('value');
+        listname = $('#frmViewList').find('#listname').text();
+        listname = listname.substr(0,listname.length-1);
+        console.log(listname);
+        date1={listname:listname, csrfmiddlewaretoken: token} ;
+        $.ajax({ // create an AJAX call...
+            data: date1 , // get the form data
+            type: "POST", // GET or POST
+            url: "mail_list/", // the file to call
+            success: function(data){
+                window.location.href = "/FirstApp/dashboard/";
+            },
+            error : function(xhr,errmsg,err) {
+                $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+    });
     $('#btnListRecipe').click( function(e){
         token = $('input[name="csrfmiddlewaretoken"]').prop('value');
-        list = $('#frmViewRecipe').find('#inputName').val();
+        list = $('#frmViewRecipe').find('#inputName').text();
+        list = list.substr(list.indexOf(":")+1);
+        console.log(list);
         date={list:list, csrfmiddlewaretoken: token} ;
         $.ajax({ // create an AJAX call...
             data: date , // get the form data
@@ -118,12 +201,75 @@ $(document).ready(function() {
     $('#btnListMenu').click( function(e){
         console.log("button list_menu")
         token = $('input[name="csrfmiddlewaretoken"]').prop('value');
-        list = $('#frmViewMenu').find('#inputName').val();
+        list = $('#frmViewMenu').find('#inputName').text();
+        list = list.substr(list.indexOf(":")+2);
+        console.log(list);
         date1={list:list, csrfmiddlewaretoken: token} ;
         $.ajax({ // create an AJAX call...
             data: date1 , // get the form data
             type: "POST", // GET or POST
             url: "add_list_menu/", // the file to call
+            success: function(data){
+                window.location.href = "/FirstApp/dashboard/";
+            },
+            error : function(xhr,errmsg,err) {
+                $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+    });
+
+     $('#btnDeleteRecipe').click( function(e){
+        token = $('input[name="csrfmiddlewaretoken"]').prop('value');
+        recipe = $('#frmViewRecipe').find('#inputName').text();
+        recipe = recipe.substr(recipe.indexOf(":")+1);
+        console.log(recipe);
+        date1={recipe:recipe, csrfmiddlewaretoken: token} ;
+        $.ajax({ // create an AJAX call...
+            data: date1 , // get the form data
+            type: "POST", // GET or POST
+            url: "delete_recipe/", // the file to call
+            success: function(data){
+                window.location.href = "/FirstApp/dashboard/";
+            },
+            error : function(xhr,errmsg,err) {
+                $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+    });
+    $('#btnDeleteMenu').click( function(e){
+        token = $('input[name="csrfmiddlewaretoken"]').prop('value');
+        menu = $('#frmViewMenu').find('#inputName').text();
+        menu = menu.substr(menu.indexOf(":")+2);;
+        date1={menu:menu, csrfmiddlewaretoken: token} ;
+        $.ajax({ // create an AJAX call...
+            data: date1 , // get the form data
+            type: "POST", // GET or POST
+            url: "delete_menu/", // the file to call
+            success: function(data){
+                window.location.href = "/FirstApp/dashboard/";
+            },
+            error : function(xhr,errmsg,err) {
+                $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+            }
+        });
+    });
+
+    $('#btnDeleteList').click( function(e){
+        token = $('input[name="csrfmiddlewaretoken"]').prop('value');
+        list = $('#frmViewList').find('#listname').text();
+        list = list.substr(0,list.length-1)
+        console.log(list)
+        date1={list:list, csrfmiddlewaretoken: token} ;
+        $.ajax({ // create an AJAX call...
+            data: date1 , // get the form data
+            type: "POST", // GET or POST
+            url: "delete_list/", // the file to call
             success: function(data){
                 window.location.href = "/FirstApp/dashboard/";
             },
@@ -210,16 +356,6 @@ $(document).ready(function() {
             (text.indexOf(valThis) == 0) ? $(this).show() : $(this).hide();
    });
     });
-     $('.buttonrecipe').hover(function(){
-     });
-    $('.buttonmenu').hover(function(){
-     });
-    $('.buttonlist').hover(function(){
-     });
-    $('.buttonrecipe').mouseout(function(){
-     });
-    $('.buttonmenu').mouseout(function(){
-    });
-    $('.buttonlist').mouseout(function(){
-    });
+
+
 });

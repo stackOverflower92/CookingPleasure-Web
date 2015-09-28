@@ -8,12 +8,12 @@ from django.contrib.auth import hashers
 
 
 class MyRegistrationForm(UserCreationForm):
-    email = forms.EmailField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputEmail','placeholder':'Email'}),required = True)
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputFirstName','placeholder':'Name'}),required = True)
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputLastName','placeholder':'Surname'}),required = True)
-    username = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputUser','placeholder':'Username'}),required = True)
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'type':'password', 'id':'inputPassword1', 'class':'form-control','placeholder':'Password'}),required = True)
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'type':'password', 'id':'inputPassword2', 'class':'form-control','placeholder':'Confirm Password'}),required = True)
+    email = forms.EmailField(widget=forms.TextInput(attrs={'type':'email','class' : 'form-control','id':'inputEmail','placeholder':'Email','required': 'true'}),required = True)
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputFirstName','placeholder':'Name','required': 'true'}),required = True)
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputLastName','placeholder':'Surname','required': 'true'}),required = True)
+    username = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputUser','placeholder':'Username','required': 'true'}),required = True)
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'type':'password', 'id':'inputPassword1', 'class':'form-control','placeholder':'Password','required': 'true'}),required = True)
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'type':'password', 'id':'inputPassword2', 'class':'form-control','placeholder':'Confirm Password','required': 'true'}),required = True)
     class Meta:
         model = User
         fields = ('username','first_name','last_name','email','password1','password2')
@@ -32,13 +32,13 @@ class MyRegistrationForm(UserCreationForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputEmail','placeholder':'Username'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'type':'password', 'id':'inputPassword', 'class':'form-control','placeholder':'Password'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputEmail','placeholder':'Username','required': 'true'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'type':'password', 'id':'inputPassword', 'class':'form-control','placeholder':'Password','required': 'true'}))
 
 class RecipeForm(forms.ModelForm):
-    name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputName','placeholder':'Recipe Name'}),required = True)
-    author = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputAuthor','placeholder':'Author'}),required = True)
-    content = forms.CharField(widget=forms.Textarea(attrs={'class' : 'form-control','id':'inputContent','placeholder':'Content'}),required = True)
+    name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputName','placeholder':'Recipe Name','required': 'true'}),required = True)
+    author = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputAuthor','placeholder':'Author','required': 'true'}),required = True)
+    content = forms.CharField(widget=forms.Textarea(attrs={'class' : 'form-control','id':'inputContent','placeholder':'Content','required': 'true'}),required = True)
     class Meta:
         model = Recipe
         exclude = ('user','photo')
@@ -53,24 +53,9 @@ class RecipeForm(forms.ModelForm):
             recipe.save()
         return recipe
 
-class IngredientForm(forms.ModelForm):
-
-    class Meta:
-        model = Ingredient
-        exclude = ('recipe',)
-        fields = ('name','quantity')
-    def save(self,commit = True):
-        ingredient = super(IngredientForm, self).save(commit = False)
-        ingredient.name = self.cleaned_data['name']
-        ingredient.quantity = self.cleaned_data['quantity']
-        if commit:
-            ingredient.save()
-        return ingredient
-
-
 class MenuForm(forms.ModelForm):
 
-    name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputName','placeholder':'Menu Name'}),required = True)
+    name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control','id':'inputName','placeholder':'Menu Name','required': 'true'}),required = True)
     recipes = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple(), queryset="")
 
     def __init__(self, *args, **kwargs):

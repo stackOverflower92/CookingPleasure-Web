@@ -12,12 +12,19 @@ body {
     border-bottom-color: #E64A19;
     border-right-color: #E64A19;
 }
+
 #active {
     color: transparent;
     border-bottom-color: whitesmoke;
 }
 ul.nav.navbar-nav > li > a {
     color: whitesmoke;
+}
+
+ul.nav.navbar-nav > li > a:focus,
+ul.nav.navbar-nav > li > a:hover {
+    background-color: #a83513;
+    color: #000000;
 }
 
 a.navbar-brand {
@@ -69,6 +76,10 @@ a.navbar-brand:hover{
   }
 }
 
+#toggle{
+    background-image: url("../images/appmenu.png");
+    background-size: 100%;
+}
 /* Sidebar navigation */
 .nav-sidebar {
   margin-right: -21px; /* 20px padding + 1px border */
@@ -148,7 +159,7 @@ a.navbar-brand:hover{
 .placeholder {
   margin-bottom: 20px;
 }
-.placeholder img {
+.placeholder input {
   display: inline-block;
   border-radius: 50%;
 }
@@ -214,4 +225,15 @@ a.navbar-brand:hover{
     border-radius: 150px;
     -webkit-border-radius: 150px;
     -moz-border-radius: 150px;
+}
+
+.button-add {
+    display: inline-block;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
+#contact-message {
+    height: 300px;
+    resize: none;
 }
