@@ -71,7 +71,6 @@ def home(request):
     formmenu = MenuForm(recipes=recipes)
     template = loader.get_template('FirstApp/dashboard.html')
     context = RequestContext(request,{'recipe_list':rec,'menu_list':menu,'list_list':list,'recipeform':formrec,'menuform':formmenu})
-
     return HttpResponse(template.render(context))
 
 @csrf_protect
@@ -79,17 +78,24 @@ def home(request):
 def addRecipe(request):
     if request.method == 'POST': # If the form has been submitted...
         form = RecipeForm(request.POST,request.FILES)
-        up_file = request.FILES['photo']
-        destination = open('FirstApp/templates/FirstApp/photo/' + request.POST.get('name') + "_" + request.user.username + "_" + up_file.name, 'wb+')
-        for chunk in up_file.chunks():
-            destination.write(chunk)
-            destination.close()
-        file = request.POST.get('name') + "_" + request.user.username + "_" + up_file.name
+        print(request.FILES)
+        find=False
+        if 'photo' in request.FILES:
+            up_file = request.FILES['photo']
+            destination = open('FirstApp/templates/FirstApp/photo/' + request.POST.get('name') + "_" + request.user.username + "_" + up_file.name, 'wb+')
+            for chunk in up_file.chunks():
+                destination.write(chunk)
+                destination.close()
+            file = request.POST.get('name') + "_" + request.user.username + "_" + up_file.name
+            find=True
 
         if form.is_valid():
             recipe = form.save(commit = False)
             recipe.user = request.user
-            recipe.photo = file
+            if find:
+                recipe.photo = file
+            else:
+                recipe.photo = "recipe.jpg"
             recipe.save()
             return HttpResponseRedirect(reverse('FirstApp:home'))
         print('non valido')
@@ -104,7 +110,7 @@ def addIngr(request):
         ing_list = request.POST.getlist('name[]')
         q_list = request.POST.getlist('q[]')
         recipe = request.POST.get('recipe')
-        rec = Recipe.objects.get(name=recipe)
+        rec = Recipe.objects.get(name=recipe, user=request.user)
         print(request.POST)
         while cont < ingrnum:
             name = ing_list[cont]

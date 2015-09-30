@@ -14,7 +14,7 @@ import string
 
 class Recipe(models.Model):
     Recipe_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
     content = models.TextField()
     author = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
