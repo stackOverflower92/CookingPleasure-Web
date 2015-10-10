@@ -78,7 +78,6 @@ def home(request):
 def addRecipe(request):
     if request.method == 'POST': # If the form has been submitted...
         form = RecipeForm(request.POST,request.FILES)
-        print(request.FILES)
         find=False
         if 'photo' in request.FILES:
             up_file = request.FILES['photo']
@@ -111,7 +110,6 @@ def addIngr(request):
         q_list = request.POST.getlist('q[]')
         recipe = request.POST.get('recipe')
         rec = Recipe.objects.get(name=recipe, user=request.user)
-        print(request.POST)
         while cont < ingrnum:
             name = ing_list[cont]
             q = q_list[cont]
